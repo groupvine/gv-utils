@@ -332,7 +332,12 @@ exports.clone = clone;
 function datePath(options) {
     var now;
     if (options && options.date) {
-        now = options.date;
+        if (typeof options.date === 'string') {
+            now = new Date(options.date);
+        }
+        else {
+            now = options.date;
+        }
     }
     else {
         now = new Date();
