@@ -342,9 +342,9 @@ function datePath(options) {
     else {
         now = new Date();
     }
-    var day = ("0" + now.getDate()).slice(-2); // 2-digit day
-    var month = ("0" + (now.getMonth() + 1)).slice(-2); // 2-digit month
-    var year = now.getFullYear();
+    var day = ("0" + now.getUTCDate()).slice(-2); // 2-digit day
+    var month = ("0" + (now.getUTCMonth() + 1)).slice(-2); // 2-digit month
+    var year = now.getUTCFullYear();
     return year + "/" + month + "/" + day;
 }
 exports.datePath = datePath;
