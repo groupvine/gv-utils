@@ -32,7 +32,7 @@ if (typeof window !== 'undefined') {
 } else {
     // Fallback debug() function on server in shared code (where I can't get 
     // conditioal require('debug') to work for server-only)
-    GLOBAL.debug = function(logStr, ...args : any[]) {
+    GLOBAL.debug = function(logStr:string, ...args : any[]) {
         logStr = "  gvapp:global " + (new Date()) + " " + logStr;
         args.unshift(logStr);
         console.log.apply(console, args);
@@ -76,15 +76,15 @@ export function capitalize(s:string) {
     return s[0].toUpperCase() + s.slice(1);
 }
 
-export function endsWith(str, suffix) {
+export function endsWith(str:string, suffix:string) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
-export function startsWith(str, prefix) {
+export function startsWith(str:string, prefix:string) {
     return str.indexOf(prefix) === 0;
 }
 
-export function strJoin(strList, joiner) {
+export function strJoin(strList:string[], joiner:string) {
     let newList = [];
     let newStr;
     for (let i = 0; i < strList.length; i++) {
@@ -102,14 +102,14 @@ export function strJoin(strList, joiner) {
 // Format number with comma separators
 //
 
-export function formatNumber(x) {
+export function formatNumber(x:number) {
     try {
         var parts = x.toString().split(".");
         parts[0]  = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         return parts.join(".");
     } catch (err) {
         console.error("GVUtils.formatNumber: %s", err);
-        return x;
+        return x.toString();
     }
 
     // Browser support unclear & may truncate decimal points?
@@ -196,7 +196,7 @@ export function convertObjOfObjsToCSVStr(obj:any, options?:any) {
         }
 
         // Sort by field title
-        fieldList.sort(function(x, y) {
+        fieldList.sort(function(x:any, y:any) {
             if (x.name < y.name) { return -1; }
             else                 { return  1; }
         });
@@ -213,7 +213,7 @@ export function convertListOfObjsToCSVStr(objList:any, options?:any) {
         return '';
     }
 
-    function newValue(rowStr, value, type?) {
+    function newValue(rowStr:string, value:any, type?:string) {
         var res = '';
 
         if (rowStr.length > 0) {
@@ -231,7 +231,7 @@ export function convertListOfObjsToCSVStr(objList:any, options?:any) {
         }
     }
 
-    function newRow(rowStr) {
+    function newRow(rowStr:string) {
         return rowStr + '\n';
     }
 
@@ -385,7 +385,7 @@ export function datePath(options?:any) {
 //
 // check whether a valid number
 //
-export function isNumber(n) {
+export function isNumber(n:any) {
     if (isNaN(parseFloat(n))) { return false; }
     if (! isFinite(n))        { return false; }
 
@@ -396,7 +396,7 @@ export function isNumber(n) {
 // Doesn't allow other chars (strict version of parseInt())
 //
 
-export function parseInteger(stringValue) { 
+export function parseInteger(stringValue:string) { 
     if ( /^[\d\s]+$/.test(stringValue) )  // allows for digits or whitespace
     {
         return parseIntegerLoose(stringValue);
@@ -410,7 +410,7 @@ export function parseInteger(stringValue) {
 //
 // Returns null if not parseable to an integer
 //
-export function parseIntegerLoose(n) {
+export function parseIntegerLoose(n:string) {
     var res;
     try {
         res = parseInt(n, 10);
@@ -428,7 +428,7 @@ export function parseIntegerLoose(n) {
 // Does list contain given value
 //
 
-export function contains(listValue, v, options?) {
+export function contains(listValue:any[], v:any, options?:any) {
     if (!options)   { options = {}; }
     if (!listValue) { return false; }
 
@@ -449,11 +449,11 @@ export function contains(listValue, v, options?) {
 // Random integer
 //
 
-export function randomInt(min, max) {
+export function randomInt(min:number, max:number) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export function random(min, max) {
+export function random(min:number, max:number) {
     return (Math.random() * (max - min)) + min;
 }
 

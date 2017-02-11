@@ -92,7 +92,7 @@ function formatNumber(x) {
     }
     catch (err) {
         console.error("GVUtils.formatNumber: %s", err);
-        return x;
+        return x.toString();
     }
     // Browser support unclear & may truncate decimal points?
     // return x.toLocaleString();
