@@ -363,6 +363,20 @@ export function clone(obj:any, ignores?:string[]) {
 // Miscellaneous
 //
 
+export function lastPathSegment(path:string) {
+    let parts = path.split('/');
+
+    if (!parts.length) { return path; }
+
+    // skip past trailing slashes
+    let res = parts.pop();
+    while (!res && parts.length) {
+	res = parts.pop();
+    }
+
+    return res;
+}
+
 export function datePath(options?:any) {
     var now;
     if (options && options.date) {

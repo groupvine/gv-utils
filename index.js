@@ -329,6 +329,19 @@ exports.clone = clone;
 //
 // Miscellaneous
 //
+function lastPathSegment(path) {
+    var parts = path.split('/');
+    if (!parts.length) {
+        return path;
+    }
+    // skip past trailing slashes
+    var res = parts.pop();
+    while (!res && parts.length) {
+        res = parts.pop();
+    }
+    return res;
+}
+exports.lastPathSegment = lastPathSegment;
 function datePath(options) {
     var now;
     if (options && options.date) {
