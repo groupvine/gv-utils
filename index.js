@@ -17,15 +17,12 @@ if (typeof window !== 'undefined') {
 else {
     // Fallback debug() function on server in shared code (where I can't get 
     // conditioal require('debug') to work for server-only)
-    GLOBAL.debug = function (logStr) {
-        var args = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            args[_i - 1] = arguments[_i];
-        }
-        logStr = "  gvapp:global " + (new Date()) + " " + logStr;
-        args.unshift(logStr);
-        console.log.apply(console, args);
-    };
+    GLOBAL.debug = require("debug/src/node");
+    // GLOBAL.debug = function(logStr:string, ...args : any[]) {
+    //     logStr = "  gvapp:global " + (new Date()) + " " + logStr;
+    //     args.unshift(logStr);
+    //     console.log.apply(console, args);
+    // };
     _debug = GLOBAL.debug;
 }
 exports.debug = _debug;
