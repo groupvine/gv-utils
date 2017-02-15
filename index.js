@@ -6,10 +6,13 @@
   /// <reference path="./typings/angular2/angular2.d.ts" />
 */
 "use strict";
+var _debug;
 if (typeof window !== 'undefined') {
     // Make debug available everywhere in the client browser
     /* tslint:disable:no-string-literal */
-    window['debug'] = require("debug/browser");
+    window['debug'] = require("debug/src/browser");
+    /* tsslint:enable:no-string-literal */
+    _debug = window['debug'];
 }
 else {
     // Fallback debug() function on server in shared code (where I can't get 
@@ -23,7 +26,9 @@ else {
         args.unshift(logStr);
         console.log.apply(console, args);
     };
+    _debug = GLOBAL.debug;
 }
+exports.debug = _debug;
 ////////////////////////////////////////////////////////////////////////
 //
 // String & formatting utilities

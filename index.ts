@@ -12,16 +12,19 @@
 //
 
 // make typescript compiler happy
-declare var debug   : any;
 declare var GLOBAL  : any;
 declare var require : any;
+
+let _debug;
 
 if (typeof window !== 'undefined') {
     // Make debug available everywhere in the client browser
 
     /* tslint:disable:no-string-literal */
-    window['debug'] = require("debug/browser");
+    window['debug'] = require("debug/src/browser");
     /* tsslint:enable:no-string-literal */
+
+    _debug = window['debug'];
 
     // Enable gvapp debugging by typing into the browser console:
     //   > debug.enable("gvapp:*");
@@ -37,8 +40,11 @@ if (typeof window !== 'undefined') {
         args.unshift(logStr);
         console.log.apply(console, args);
     };
+
+    _debug = GLOBAL.debug;
 }
 
+export var debug = _debug;
 
 ////////////////////////////////////////////////////////////////////////
 //
