@@ -38,7 +38,7 @@ if (typeof window !== 'undefined') {
 
     // GLOBAL.debug = require("debug/src/node");
 
-    GLOBAL.debug = function(prefix) {
+    GLOBAL.debug = function(prefix:string) {
         return function(logStr:string, ...args : any[]) {
             logStr = `[${prefix}] ` + (new Date()) + " " + logStr;
             args.unshift(logStr);
