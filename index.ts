@@ -475,6 +475,27 @@ export function contains(listValue:any[], v:any, options?:any) {
     return false;
 }
 
+//
+// Remove some value from a list (only removes first occurrence found)
+//
+export function removeFromList(listValue:any[], v:any, options?:any) {
+    if (!options)   { options = {}; }
+    if (!listValue) { return; }
+
+    function doRemove(index:number) {
+        listValue.splice(index, 1);
+    }
+
+    for (let i = 0; i < listValue.length; i++) {
+        if (options.toLower) {
+            if ( listValue[i].toLowerCase() === v.toLowerCase() ) {
+                return doRemove(i);
+            }
+        } else if ( listValue[i] === v ) {
+            return doRemove(i);
+        }
+    }
+}
 
 //
 // Random integer

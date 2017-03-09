@@ -442,6 +442,31 @@ function contains(listValue, v, options) {
 }
 exports.contains = contains;
 //
+// Remove some value from a list (only removes first occurrence found)
+//
+function removeFromList(listValue, v, options) {
+    if (!options) {
+        options = {};
+    }
+    if (!listValue) {
+        return;
+    }
+    function doRemove(index) {
+        listValue.splice(index, 1);
+    }
+    for (var i = 0; i < listValue.length; i++) {
+        if (options.toLower) {
+            if (listValue[i].toLowerCase() === v.toLowerCase()) {
+                return doRemove(i);
+            }
+        }
+        else if (listValue[i] === v) {
+            return doRemove(i);
+        }
+    }
+}
+exports.removeFromList = removeFromList;
+//
 // Random integer
 //
 function randomInt(min, max) {
