@@ -133,6 +133,22 @@ export function formatNumber(x:number) {
     // return x.toLocaleString();
 }
 
+export function queryArgStr(qArgs:any) {
+    let names = Object.keys(qArgs);
+    let res   = '';
+    for (let i = 0; i < names.length; i++) {
+        if (qArgs[names[i]] != null) {
+            if (res) {
+                res += `&${names[i]}=${qArgs[names[i]]}`;
+            } else {
+                res += `?${names[i]}=${qArgs[names[i]]}`;
+            }
+        }
+    }
+    return res;
+}
+
+
 ////////////////////////////////////////////////////////////////////////
 //
 // Object conversion utilities
@@ -413,6 +429,11 @@ export function datePath(options?:any) {
     return  `${year}/${month}/${day}`;
 }
 
+////////////////////////////////////////////////////////////////////////
+//
+// Number / string-integer conversion operations
+//
+
 //
 // check whether a valid number
 //
@@ -454,6 +475,11 @@ export function parseIntegerLoose(n:string) {
         return null;
     }
 }
+
+////////////////////////////////////////////////////////////////////////
+//
+// List/Array operations
+//
 
 //
 // Does list contain given value

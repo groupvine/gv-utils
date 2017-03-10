@@ -111,6 +111,22 @@ function formatNumber(x) {
     // return x.toLocaleString();
 }
 exports.formatNumber = formatNumber;
+function queryArgStr(qArgs) {
+    var names = Object.keys(qArgs);
+    var res = '';
+    for (var i = 0; i < names.length; i++) {
+        if (qArgs[names[i]] != null) {
+            if (res) {
+                res += "&" + names[i] + "=" + qArgs[names[i]];
+            }
+            else {
+                res += "?" + names[i] + "=" + qArgs[names[i]];
+            }
+        }
+    }
+    return res;
+}
+exports.queryArgStr = queryArgStr;
 ////////////////////////////////////////////////////////////////////////
 //
 // Object conversion utilities
@@ -374,6 +390,10 @@ function datePath(options) {
     return year + "/" + month + "/" + day;
 }
 exports.datePath = datePath;
+////////////////////////////////////////////////////////////////////////
+//
+// Number / string-integer conversion operations
+//
 //
 // check whether a valid number
 //
@@ -418,6 +438,10 @@ function parseIntegerLoose(n) {
     }
 }
 exports.parseIntegerLoose = parseIntegerLoose;
+////////////////////////////////////////////////////////////////////////
+//
+// List/Array operations
+//
 //
 // Does list contain given value
 //
