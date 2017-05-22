@@ -20,11 +20,15 @@ let _debug;
 if (typeof window !== 'undefined') {
     // Make debug available everywhere in the client browser
 
-    /* tslint:disable:no-string-literal */
-    window['debug'] = require("debug/src/browser");
-    /* tsslint:enable:no-string-literal */
+    try {
+        /* tslint:disable:no-string-literal */
+        window['debug'] = require("debug/src/browser");
+        /* tsslint:enable:no-string-literal */
 
-    _debug = window['debug'];
+        _debug = window['debug'];
+    } catch (e) {
+        // pass
+    }
 
     // Enable gvapp debugging by typing into the browser console:
     //   > debug.enable("gvapp:*");
