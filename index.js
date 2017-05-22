@@ -8,15 +8,6 @@
 "use strict";
 var _debug;
 if (typeof window !== 'undefined') {
-    // Make debug available everywhere in the client browser
-    try {
-        /* tslint:disable:no-string-literal */
-        window['debug'] = require("debug/src/browser");
-        /* tsslint:enable:no-string-literal */
-        _debug = window['debug'];
-    }
-    catch (e) {
-    }
 }
 else {
     // Fallback debug() function on server in shared code (where I can't get 
