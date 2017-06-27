@@ -13,7 +13,7 @@
 
 // make typescript compiler happy
 declare var GLOBAL  : any;
-declare var require : any;
+// declare var require : any;
 
 let _debug;
 
