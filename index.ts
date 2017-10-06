@@ -134,15 +134,22 @@ export function formatNumber(x:number) {
     // return x.toLocaleString();
 }
 
-export function queryArgStr(qArgs:any) {
+export function queryArgStr(qArgs:any, options?:any) {
+    if (!options) { options = {}; }
+
     let names = Object.keys(qArgs);
     let res   = '';
+    let val;
     for (let i = 0; i < names.length; i++) {
         if (qArgs[names[i]] != null) {
+            val = qArgs[names[i]]
+            if (!options.skipEncode) {
+                val = encodeURIComponent(val);
+            }
             if (res) {
-                res += `&${names[i]}=${qArgs[names[i]]}`;
+                res += `&${names[i]}=${val}`;
             } else {
-                res += `?${names[i]}=${qArgs[names[i]]}`;
+                res += `?${names[i]}=${val}`;
             }
         }
     }

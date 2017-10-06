@@ -6,6 +6,7 @@
   /// <reference path="./typings/angular2/angular2.d.ts" />
 */
 "use strict";
+// declare var require : any;
 var _debug;
 if (typeof window !== 'undefined') {
 }
@@ -106,16 +107,24 @@ function formatNumber(x) {
     // return x.toLocaleString();
 }
 exports.formatNumber = formatNumber;
-function queryArgStr(qArgs) {
+function queryArgStr(qArgs, options) {
+    if (!options) {
+        options = {};
+    }
     var names = Object.keys(qArgs);
     var res = '';
+    var val;
     for (var i = 0; i < names.length; i++) {
         if (qArgs[names[i]] != null) {
+            val = qArgs[names[i]];
+            if (!options.skipEncode) {
+                val = encodeURIComponent(val);
+            }
             if (res) {
-                res += "&" + names[i] + "=" + qArgs[names[i]];
+                res += "&" + names[i] + "=" + val;
             }
             else {
-                res += "?" + names[i] + "=" + qArgs[names[i]];
+                res += "?" + names[i] + "=" + val;
             }
         }
     }
