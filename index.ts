@@ -12,7 +12,7 @@
 //
 
 // make typescript compiler happy
-declare var GLOBAL  : any;
+declare var global  : any;
 // declare var require : any;
 
 let _debug;
@@ -37,9 +37,9 @@ if (typeof window !== 'undefined') {
     // Fallback debug() function on server in shared code (where I can't get 
     // conditioal require('debug') to work for server-only)
 
-    // GLOBAL.debug = require("debug/src/node");
+    // global.debug = require("debug/src/node");
 
-    GLOBAL.debug = function(prefix:string) {
+    global.debug = function(prefix:string) {
         return function(logStr:string, ...args : any[]) {
             logStr = `[${prefix}] ` + (new Date()) + " " + logStr;
             args.unshift(logStr);
@@ -47,13 +47,13 @@ if (typeof window !== 'undefined') {
         };
     };
 
-    // GLOBAL.debug = function(logStr:string, ...args : any[]) {
+    // global.debug = function(logStr:string, ...args : any[]) {
     //     logStr = "  gvapp:global " + (new Date()) + " " + logStr;
     //     args.unshift(logStr);
     //     console.log.apply(console, args);
     // };
 
-    _debug = GLOBAL.debug;
+    _debug = global.debug;
 }
 
 export var debug = _debug;
