@@ -1,3 +1,4 @@
+"use strict";
 /*
   Can only include these Typescript references in the source file, since the paths are
   different for these files included by the server and the client, via a link.  The
@@ -5,10 +6,20 @@
 
   /// <reference path="./typings/angular2/angular2.d.ts" />
 */
-"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 // declare var require : any;
 var _debug;
 if (typeof window !== 'undefined') {
+    // Make debug available everywhere in the client browser
+    /* tslint:disable:no-string-literal */
+    // Commenting out... don't rely on this package.
+    // window['debug'] = require("debug/src/browser");
+    /* tsslint:enable:no-string-literal */
+    //_debug = window['debug'];
+    // Enable gvapp debugging by typing into the browser console:
+    //   > debug.enable("gvapp:*");
+    // window['debug'] = require("/public/libs/node_modules/debug/debug");
+    // window.debug.enable("gvapp:*");  // leads to "exports.save is not a function" console error
 }
 else {
     // Fallback debug() function on server in shared code (where I can't get 
@@ -415,7 +426,8 @@ exports.isNumber = isNumber;
 // Doesn't allow other chars (strict version of parseInt())
 //
 function parseInteger(stringValue) {
-    if (/^[\d\s]+$/.test(stringValue)) {
+    if (/^[\d\s]+$/.test(stringValue)) // allows for digits or whitespace
+     {
         return parseIntegerLoose(stringValue);
     }
     else {
@@ -517,3 +529,4 @@ function beep() {
     snd.play();
 }
 exports.beep = beep;
+//# sourceMappingURL=index.js.map
