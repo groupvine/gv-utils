@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc index.ts",
-    "reinstall": "npm install"
+    "reinstall": "npm install",
+    "postinstall": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/davebeyer/gv-utils/issues"
   },
-  "homepage": "https://github.com/davebeyer/gv-utils#readme"
+  "homepage": "https://github.com/davebeyer/gv-utils#readme",
+  "devDependencies": {
+    "typescript": "^3.3.1"
+  }
 }
