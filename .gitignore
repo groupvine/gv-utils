@@ -1,6 +1,4 @@
-*.js
 **/*.js
-!index.js
 
 **/*.map
 node_modules
