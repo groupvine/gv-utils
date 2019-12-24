@@ -458,12 +458,19 @@ export function isNumber(n:any) {
 //
 
 export function parseInteger(stringValue:string) { 
-    if ( /^[\d\s]+$/.test(stringValue) )  // allows for digits or whitespace
-    {
+    if ( /^[\d\s]+$/.test(stringValue) )  {
+        // allows for digits or whitespace
         return parseIntegerLoose(stringValue);
+    } else {
+        return null;
     }
-    else
-    {
+}
+
+export function parseFloatStrict(stringValue:string) {
+    if ( /^[\d\s\.\+\-]+$/.test(stringValue) ) {
+        // allows for digits, whitespace, +-, .
+        return parseFloat(stringValue);
+    } else {
         return null;
     }
 }
