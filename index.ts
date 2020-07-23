@@ -457,23 +457,6 @@ export function isNumber(n:any) {
 // Doesn't allow other chars (strict version of parseInt())
 //
 
-// parseIntStrict() is just like JS parseInt() so it returns
-// NaN if not strictly a number, but doesn't
-// allow characters anywhere in string, unlike parseInt()
-
-export function parseIntStrict(stringValue:string) {
-    let res;
-    if ( /^[\d\s]+$/.test(stringValue) )  {
-        // allows for digits or whitespace
-        res = parseIntegerLoose(stringValue);
-    }
-    if (res == null) {
-        return parseInt('xyz');  // ensure returning NaN
-    } else {
-        return res;
-    }
-}
-
 export function parseInteger(stringValue:string) { 
     if ( /^[\d\s]+$/.test(stringValue) )  {
         // allows for digits or whitespace
