@@ -2,10 +2,9 @@
   "version": "3.1.6",
 
   "compilerOptions": {
-    "target": "es2015",
-    "module": "commonjs",
+    "target": "es5",
     "lib": [ "dom", "es2015", "es2016", "es2017" ],
-    "moduleResolution": "node",
+    "module": "commonjs",
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": false,
@@ -17,6 +16,5 @@
   },
   "exclude" : [
     "node_modules"
-  ],
-  "include" : ["src"]
+  ]
 }
