@@ -1,6 +1,6 @@
 {
   "name": "gv-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GroupVine general utilities",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,6 @@
   "homepage": "https://github.com/groupvine/gv-utils#readme",
   "devDependencies": {},
   "dependencies": {
-    "typescript": "^3.4.5"
+    "typescript": "~5.0.2"
   }
 }
